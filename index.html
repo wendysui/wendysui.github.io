@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+* {
+  box-sizing: border-box;
+}
+
+/* Add a gray background color with some padding */
+body {
+  font-family: Arial;
+  padding: 20px;
+  background: lightblue;
+}
+
+/* Header/Blog Title */
+.header {
+  padding: 30px;
+  font-size: 40px;
+  text-align: center;
+  background: white;
+}
+
+/* Create two unequal columns that floats next to each other */
+/* Left column */
+.leftcolumn {   
+  float: left;
+  width: 75%;
+}
+
+/* Right column */
+.rightcolumn {
+  float: left;
+  width: 25%;
+  padding-left: 20px;
+}
+
+/* Fake image */
+.fakeimg {
+  background-color: #aaa;
+  width: 100%;
+  padding: 20px;
+}
+
+/* Add a card effect for articles */
+.card {
+   background-color: white;
+   padding: 20px;
+   margin-top: 20px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Footer */
+.footer {
+  padding: 10px;
+  text-align: center;
+  background: #ddd;
+  margin-top: 20px;
+}
+
+/* Pagination controls */
+.pagination {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.pagination button {
+  padding: 10px 15px;
+  margin: 0 5px;
+  background-color: white;
+  border: 1px solid #ddd;
+  cursor: pointer;
+}
+
+.pagination button.active {
+  background-color: #007BFF;
+  color: white;
+  border: 1px solid #007BFF;
+}
+
+.pagination button:disabled {
+  background-color: #ddd;
+  color: #aaa;
+  cursor: not-allowed;
+}
+
+/* Responsive layout - when the screen is less than 800px wide, make the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 800px) {
+  .leftcolumn, .rightcolumn {   
+    width: 100%;
+    padding: 0;
+  }
+}
+#blogname1
+{
+  text-align: right;
+  font-size: 20px;
+  font-family: Cavolini;
+}
+
+#imgH
+{
+  float: left;
+  height: 50px;
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="row">
+    <div class="column">
+      <img id="imgH" src="header.jpg"></img>
+    </div>
+    <div class="column">
+      <h2>The Learning Loft</h2>
+    </div>
+    <div class="column">
+      <P id="blogname1"> Huang @ UHV</P>
+    </div>
+  </div>
+  
+  
+</div>
+
+<div class="row">
+  <div class="leftcolumn">
+    <div class="card">
+      <h2>TITLE HEADING</h2>
+      <h5>Title description, Dec 7, 2017</h5>
+    
+      <p> <a href="Expenses.txt"> this is a dataset </a>   </p>
+
+      <p>Some text..</p>
+      <p>Sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>
+    </div>
+    <div class="card">
+      <h2>TITLE HEADING</h2>
+      <h5>Title description, Dec 7, 2017</h5>
+    
+      <p> <a href="Expenses.txt"> this is a dataset </a>   </p>
+
+      <p>Some text..</p>
+      <p>Sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>
+    </div>
+
+    <div class="card">
+      <h2>TITLE HEADING</h2>
+      <h5>Title description, Dec 7, 2017</h5>
+    
+      <p> <a href="Expenses.txt"> this is a dataset </a>   </p>
+
+      <p>Some text..</p>
+      <p>Sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>
+    </div>
+    <div class="card">
+      <h2>TITLE HEADING</h2>
+      <h5>Title description, Sep 2, 2017</h5>
+      <div class="fakeimg" style="height:200px;">Image</div>
+      <p>Some text..</p>
+      <p>Sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>
+    </div>
+  </div>
+  <div class="rightcolumn">
+    <div class="card">
+      <h2>About Me</h2>
+      <div class="fakeimg" style="height:100px;">Image</div>
+      <p>Some text about me in culpa qui officia deserunt mollit anim..</p>
+    </div>
+    <div class="card">
+      <h3>Popular Post</h3>
+      <div class="fakeimg">Image</div><br>
+      <div class="fakeimg">Image</div><br>
+      <div class="fakeimg">Image</div>
+    </div>
+    <div class="card">
+      <h3>Follow Me</h3>
+      <p>Some text..</p>
+    </div>
+  </div>
+</div>
+<div class="pagination">
+  <button id="prevBtn" class="disabled">Previous</button>
+  <button id="nextBtn">Next</button>
+</div>
+<div class="footer">
+  <h5>Footer</h5>
+</div>
+
+<script>
+  const itemsPerPage = 3;
+  let currentPage = 1;
+  
+  function showPage(page) {
+    const cards = document.querySelectorAll(".leftcolumn .card");
+    const totalItems = cards.length;
+    const totalPages = Math.ceil(totalItems / itemsPerPage);
+  
+    // Hide all cards
+    cards.forEach((card, index) => {
+      card.style.display = "none";
+    });
+  
+    // Calculate start and end index for the current page
+    const start = (page - 1) * itemsPerPage;
+    const end = start + itemsPerPage;
+  
+    // Show cards for the current page
+    for (let i = start; i < end && i < totalItems; i++) {
+      cards[i].style.display = "block";
+    }
+  
+    // Update button states
+    const prevBtn = document.getElementById("prevBtn");
+    const nextBtn = document.getElementById("nextBtn");
+  
+    prevBtn.classList.toggle("disabled", page === 1);
+    nextBtn.classList.toggle("disabled", page === totalPages);
+  }
+  
+  // Event listeners for pagination buttons
+  document.getElementById("prevBtn").addEventListener("click", () => {
+    if (currentPage > 1) {
+      currentPage--;
+      showPage(currentPage);
+    }
+  });
+  
+  document.getElementById("nextBtn").addEventListener("click", () => {
+    const totalItems = document.querySelectorAll(".leftcolumn .card").length;
+    const totalPages = Math.ceil(totalItems / itemsPerPage);
+    if (currentPage < totalPages) {
+      currentPage++;
+      showPage(currentPage);
+    }
+  });
+  
+  // Initial page load
+  showPage(currentPage);
+  </script>
+</body>
+</html>
