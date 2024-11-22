@@ -11,7 +11,7 @@
 body {
   font-family: Arial;
   padding: 20px;
-  background: lightblue;
+  background: #f1f1f1;
 }
 
 /* Header/Blog Title */
@@ -59,36 +59,10 @@ body {
 
 /* Footer */
 .footer {
-  padding: 10px;
+  padding: 20px;
   text-align: center;
   background: #ddd;
   margin-top: 20px;
-}
-
-/* Pagination controls */
-.pagination {
-  text-align: center;
-  margin-top: 20px;
-}
-
-.pagination button {
-  padding: 10px 15px;
-  margin: 0 5px;
-  background-color: white;
-  border: 1px solid #ddd;
-  cursor: pointer;
-}
-
-.pagination button.active {
-  background-color: #007BFF;
-  color: white;
-  border: 1px solid #007BFF;
-}
-
-.pagination button:disabled {
-  background-color: #ddd;
-  color: #aaa;
-  cursor: not-allowed;
 }
 
 /* Responsive layout - when the screen is less than 800px wide, make the two columns stack on top of each other instead of next to each other */
@@ -98,36 +72,12 @@ body {
     padding: 0;
   }
 }
-#blogname1
-{
-  text-align: right;
-  font-size: 20px;
-  font-family: Cavolini;
-}
-
-#imgH
-{
-  float: left;
-  height: 50px;
-}
 </style>
 </head>
 <body>
 
 <div class="header">
-  <div class="row">
-    <div class="column">
-      <img id="imgH" src="header.jpg"></img>
-    </div>
-    <div class="column">
-      <h2>The Learning Loft</h2>
-    </div>
-    <div class="column">
-      <P id="blogname1"> Huang @ UHV</P>
-    </div>
-  </div>
-  
-  
+  <h2>Blog Name</h2>
 </div>
 
 <div class="row">
@@ -135,28 +85,7 @@ body {
     <div class="card">
       <h2>TITLE HEADING</h2>
       <h5>Title description, Dec 7, 2017</h5>
-    
-      <p> <a href="Expenses.txt"> this is a dataset </a>   </p>
-
-      <p>Some text..</p>
-      <p>Sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>
-    </div>
-    <div class="card">
-      <h2>TITLE HEADING</h2>
-      <h5>Title description, Dec 7, 2017</h5>
-    
-      <p> <a href="Expenses.txt"> this is a dataset </a>   </p>
-
-      <p>Some text..</p>
-      <p>Sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>
-    </div>
-
-    <div class="card">
-      <h2>TITLE HEADING</h2>
-      <h5>Title description, Dec 7, 2017</h5>
-    
-      <p> <a href="Expenses.txt"> this is a dataset </a>   </p>
-
+      <div class="fakeimg" style="height:200px;">Image</div>
       <p>Some text..</p>
       <p>Sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>
     </div>
@@ -186,64 +115,10 @@ body {
     </div>
   </div>
 </div>
-<div class="pagination">
-  <button id="prevBtn" class="disabled">Previous</button>
-  <button id="nextBtn">Next</button>
-</div>
+
 <div class="footer">
-  <h5>Footer</h5>
+  <h2>Footer</h2>
 </div>
 
-<script>
-  const itemsPerPage = 3;
-  let currentPage = 1;
-  
-  function showPage(page) {
-    const cards = document.querySelectorAll(".leftcolumn .card");
-    const totalItems = cards.length;
-    const totalPages = Math.ceil(totalItems / itemsPerPage);
-  
-    // Hide all cards
-    cards.forEach((card, index) => {
-      card.style.display = "none";
-    });
-  
-    // Calculate start and end index for the current page
-    const start = (page - 1) * itemsPerPage;
-    const end = start + itemsPerPage;
-  
-    // Show cards for the current page
-    for (let i = start; i < end && i < totalItems; i++) {
-      cards[i].style.display = "block";
-    }
-  
-    // Update button states
-    const prevBtn = document.getElementById("prevBtn");
-    const nextBtn = document.getElementById("nextBtn");
-  
-    prevBtn.classList.toggle("disabled", page === 1);
-    nextBtn.classList.toggle("disabled", page === totalPages);
-  }
-  
-  // Event listeners for pagination buttons
-  document.getElementById("prevBtn").addEventListener("click", () => {
-    if (currentPage > 1) {
-      currentPage--;
-      showPage(currentPage);
-    }
-  });
-  
-  document.getElementById("nextBtn").addEventListener("click", () => {
-    const totalItems = document.querySelectorAll(".leftcolumn .card").length;
-    const totalPages = Math.ceil(totalItems / itemsPerPage);
-    if (currentPage < totalPages) {
-      currentPage++;
-      showPage(currentPage);
-    }
-  });
-  
-  // Initial page load
-  showPage(currentPage);
-  </script>
 </body>
 </html>
