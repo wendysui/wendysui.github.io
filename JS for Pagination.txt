@@ -1,0 +1,85 @@
+1style for Pagination
+/* Pagination controls */
+.pagination {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.pagination button {
+  padding: 10px 15px;
+  margin: 0 5px;
+  background-color: white;
+  border: 1px solid #ddd;
+  cursor: pointer;
+}
+
+.pagination button.active {
+  background-color: #007BFF;
+  color: white;
+  border: 1px solid #007BFF;
+}
+
+.pagination button:disabled {
+  background-color: #ddd;
+  color: #aaa;
+  cursor: not-allowed;
+}
+
+2 body section,put the code before footer div.
+<div class="pagination">
+  <button id="prevBtn" class="disabled">Previous</button>
+  <button id="nextBtn">Next</button>
+</div>
+
+3 JavaScript
+<script>
+  const itemsPerPage = 3;
+  let currentPage = 1;
+  
+  function showPage(page) {
+    const cards = document.querySelectorAll(".leftcolumn .card");
+    const totalItems = cards.length;
+    const totalPages = Math.ceil(totalItems / itemsPerPage);
+  
+    // Hide all cards
+    cards.forEach((card, index) => {
+      card.style.display = "none";
+    });
+  
+    // Calculate start and end index for the current page
+    const start = (page - 1) * itemsPerPage;
+    const end = start + itemsPerPage;
+  
+    // Show cards for the current page
+    for (let i = start; i < end && i < totalItems; i++) {
+      cards[i].style.display = "block";
+    }
+  
+    // Update button states
+    const prevBtn = document.getElementById("prevBtn");
+    const nextBtn = document.getElementById("nextBtn");
+  
+    prevBtn.classList.toggle("disabled", page === 1);
+    nextBtn.classList.toggle("disabled", page === totalPages);
+  }
+  
+  // Event listeners for pagination buttons
+  document.getElementById("prevBtn").addEventListener("click", () => {
+    if (currentPage > 1) {
+      currentPage--;
+      showPage(currentPage);
+    }
+  });
+  
+  document.getElementById("nextBtn").addEventListener("click", () => {
+    const totalItems = document.querySelectorAll(".leftcolumn .card").length;
+    const totalPages = Math.ceil(totalItems / itemsPerPage);
+    if (currentPage < totalPages) {
+      currentPage++;
+      showPage(currentPage);
+    }
+  });
+  
+  // Initial page load
+  showPage(currentPage);
+  </script>
