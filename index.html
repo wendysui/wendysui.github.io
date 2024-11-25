@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title> HomePage</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Home Page</title>
 <style>
 * {
   box-sizing: border-box;
@@ -73,7 +73,12 @@ body {
     padding: 0;
   }
 }
+#imgStyle
+{
+  float: left;
+}
 
+/* Pagination controls */
 .pagination {
   text-align: center;
   margin-top: 20px;
@@ -104,9 +109,13 @@ body {
 <body>
 
 <div class="header">
-  <div>this is up</div>
-  <div><h2>Blog Name</h2></div>
-  <div>this is bottom</div>
+  <div id="imgStyle">
+    <img src="img1.jpg"></img>
+  </div>
+  <div>
+    <h2>Blog Name</h2>
+  </div>
+  
 </div>
 
 <div class="row">
@@ -115,14 +124,12 @@ body {
       <h2>TITLE HEADING</h2>
       <h5>Title description, Dec 7, 2017</h5>
       <div class="fakeimg" style="height:200px;">Image</div>
-      <p>Some text..
-        <a href="JS for Pagination.txt">js file</a>
-      </p>
+      <p>Some text..<a href="JS for Pagination.txt" >link to txt</a></p>
       <p>Sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>
     </div>
     <div class="card">
       <h2>TITLE HEADING</h2>
-      <h5>Title description, Sep 2, 2017</h5>
+      <h5>Title description, Dec 7, 2017</h5>
       <div class="fakeimg" style="height:200px;">Image</div>
       <p>Some text..</p>
       <p>Sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>
@@ -136,7 +143,7 @@ body {
     </div>
     <div class="card">
       <h2>TITLE HEADING</h2>
-      <h5>Title description, Sep 2, 2017</h5>
+      <h5>Title description, Dec 7, 2017</h5>
       <div class="fakeimg" style="height:200px;">Image</div>
       <p>Some text..</p>
       <p>Sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>
@@ -176,14 +183,13 @@ body {
 </div>
 
 <div class="pagination">
-  <button id="prevBtn" class="disabled">Previous</button>
+  <button id="prevBtn" class="disabled">Pre</button>
   <button id="nextBtn">Next</button>
 </div>
 
 <div class="footer">
   <h2>Footer</h2>
 </div>
-
 <script>
   const itemsPerPage = 4;
   let currentPage = 1;
